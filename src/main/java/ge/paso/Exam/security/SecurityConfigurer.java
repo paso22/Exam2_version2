@@ -28,20 +28,12 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.csrf().disable()
-//                .authorizeRequests().antMatchers("/api/register").permitAll()
-//                .and().authorizeRequests().antMatchers("/api/verify").permitAll()
-//                .antMatchers("/server/create").hasAuthority("ADMIN")
-//                .antMatchers("/server/login").hasAuthority("ADMIN")
-////                .and().authorizeRequests().antMatchers("/server/login").authenticated().and().formLogin()
-////                .and().authorizeRequests().anyRequest().authenticated();
-//                .anyRequest().authenticated().and().formLogin();
         http.csrf().disable()
                 .authorizeRequests().antMatchers("/api").permitAll()
                 .and()
                 .authorizeRequests().antMatchers("/server/login").authenticated().and().formLogin()
                 .and()
-                .authorizeRequests().antMatchers("/server/create/**").authenticated().and()
+                .authorizeRequests().antMatchers("/server/create/**").permitAll().and()
                 .authorizeRequests().antMatchers("/server/get").authenticated().and()
                 .authorizeRequests().antMatchers("/server/choose/**").authenticated().and()
                 .authorizeRequests().antMatchers("/server/release/**").authenticated().and()
